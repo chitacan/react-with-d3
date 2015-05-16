@@ -1,21 +1,18 @@
-# Remark Starterify
+# [react-with-d3](https://chitacan.github.io/react-with-d3)
 
-:rocket: Fast develop & deploy [Remark](https://github.com/gnab/remark) slideshow based on [react-starterify](https://github.com/chitacan/react-starterify)
+:briefcase:
 
 ## Usage
 
 Make sure you have [node](https://nodejs.org/), [gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), [bower](http://bower.io/#install-bower) :hand:
-
 Before to get started, clone this project. (remove `./git` to fresh start)
 
-    $ git clone chitacan/remark-starterify
-    $ cd remark-starterify
-    $ rm -rf .git/
+    $ git clone chitacan/react-with-d3
     $ npm install && bower install
 
 Start developing with
 
-    $ gulp watch
+    $ gulp
 
 Build with
 
@@ -25,7 +22,6 @@ Depoly to `gh-pages` with
 
     $ gulp deploy
 
-## Make Slideshow
+# Hack
 
-* To make slideshow, edit `app/content/slide.md` ([see](https://github.com/gnab/remark/wiki/Markdown))
-* To make script component(with [react](http://facebook.github.io/react/)), edit `app/scripts/app.coffee`
+Every visual elements in slide is `react` component. ([see](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/app.coffee))
