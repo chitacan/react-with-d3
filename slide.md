@@ -4,7 +4,7 @@ class: center, middle
 
 # 리액트와 디3
 .degrade[디아블로3 아님 😅]
-.footnote.pull-right[🍴  on [github](https://github.com/riiid/remark)]
+.footnote.pull-right[🍴  on [github](https://github.com/chitacan/react-with-d3)]
 
 ---
 class: center, middle
@@ -69,7 +69,7 @@ class: center, middle
 `react` 로 관리해보면 어떨까?
 
 * 재사용 가능한 컴포넌트를 쉽게 만들 수 있고,
-* react 의 이벤트, 프로퍼티 활용
+* `react` 의 이벤트, 프로퍼티 활용
 * `Flux`, `Relay`, `GraphQL` 와 함께 scale-up 👯
 ]
 
