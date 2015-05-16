@@ -192,7 +192,7 @@ selection.exit().remove()
 배열의 크기가 달라질 때마다 사각형의 갯수도 변할 수 있어야 합니다.
 어떻게 구현하는 것이 좋을까요?
 
-아래와 같이 해당하는 사각형, 배열의 아이템을 선택 (selection) 할 수 있다면 간단합니다.
+아래와 같이 배열의 아이템에 해당하는 사각형을 선택 (selection) 할 수 있는 함수가 있다만 간단할 겁니다.
 
 * 추가되는 배열의 아이템 👉 enter()
 * 삭제되는 배열의 아이템 👉 exit()
@@ -571,12 +571,39 @@ class: center, middle
 ]
 
 .right-column[
-* `react` 빠 인증
+* `react` 빠 인증 ? 👅
 * `D3` 코드의 재사용성 극대화
 * `react` 스러운 데이터 흐름, 이벤트 처리
 * css 도 js 파일에
 * 성능.. 어떻게 비교할 수 있을까?
 ]
+
+---
+## 재사용성의 극대화?
+
+사실 이 슬라이드의 데모는 모두 `D3`로 그려지는 `react` 컴포넌트 🙋
+
+`slide.md`
+
+```html
+<div id="triangles"></div>
+```
+
+`app.coffee`
+
+```coffeescript
+Triangles   = require './components/triangles.coffee'
+
+slides.on 'beforeShowSlide', (slide)->
+  switch slide.getSlideIndex()
+    when 19
+*     React.render <Triangles width={400} height={200}/>,
+*     getEl 'triangles-demo'
+
+slides.on 'hideSlide', (slide)->
+  switch slide.getSlideIndex()
+*   when 19 then React.unmountComponentAtNode getEl 'triangles-demo'
+```
 
 ---
 .left-column[
