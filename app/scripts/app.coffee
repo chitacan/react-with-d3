@@ -22,11 +22,21 @@ getEl = document.getElementById.bind document
 
 slides.on 'beforeShowSlide', (slide)->
   switch slide.getSlideIndex()
-    when 0  then React.render <Triangles width={300} height={100}/>, getEl Triangles.ID
-    when 19 then React.render <Triangles width={400} height={200}/>, getEl 'triangles-demo'
-    when 21 then React.render <MultiLine width={500} height={300}/>, getEl 'multiline-demo'
-    when 24 then React.render <LineChart width={500} height={300} highlight={false}/>, getEl 'line-demo-1'
-    when 26 then React.render <Histogram />, getEl Histogram.ID
+    when 0
+      React.render <Triangles width={300} height={100}/>,
+      getEl Triangles.ID
+    when 19
+      React.render <Triangles width={400} height={200}/>,
+      getEl 'triangles-demo'
+    when 21
+      React.render <MultiLine width={500} height={300}/>,
+      getEl 'multiline-demo'
+    when 24
+      React.render <LineChart width={500} height={300} highlight={false}/>,
+      getEl 'line-demo-1'
+    when 26
+      React.render <Histogram />,
+      getEl Histogram.ID
     when 27 then React.render <LineChart width={500} height={300} highlight={true} />, getEl 'line-demo-2'
 
 slides.on 'hideSlide', (slide)->
