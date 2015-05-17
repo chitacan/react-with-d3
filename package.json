@@ -1,11 +1,11 @@
 {
-  "name": "remark-starterify",
+  "name": "remark-with-d3",
   "version": "0.0.1",
-  "description": ":rocket: Fast develop & deploy remark slideshow.",
+  "description": "react with d3",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chitacan/remark-starterify"
+    "url": "https://github.com/chitacan/react-with-d3"
   },
   "keywords": [
     "gulp",
@@ -21,9 +21,9 @@
   "author": "chitacan",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chitacan/remark-starterify/issues"
+    "url": "https://github.com/chitacan/react-with-d3/issues"
   },
-  "homepage": "https://github.com/chitacan/remark-starterify",
+  "homepage": "https://github.com/chitacan/react-with-d3",
   "dependencies": {
     "d3": "^3.5.5"
   },
