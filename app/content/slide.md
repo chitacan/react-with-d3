@@ -18,7 +18,7 @@ class: center, middle
 ]
 
 .right-column[
-  * [`renote`](play.google.com/store/apps/details?id=co.riiid.renote) 의 차트를 `D3` 로 만들게 되었음
+  * [`renote`](https://play.google.com/store/apps/details?id=co.riiid.renote) 의 차트를 `D3` 로 만들게 되었음
   * 오 생각보다 재미진데?
   * `D3` 로 이것저것 실험하기 시작
 
