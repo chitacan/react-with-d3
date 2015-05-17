@@ -390,7 +390,7 @@ class: center, middle
 ]
 
 .right-column[
-리액트는 html 엘리먼트 뿐만 아니라 svg 앨리먼트도 지원!!
+`react`는 `html` 엘리먼트 뿐만 아니라 `svg` 앨리먼트도 지원!!
 
 https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
@@ -498,6 +498,8 @@ render: ->
 하지만 `mousemove` 와 같이 정확한 포인트가 필요한 경우 `D3` 의 이벤트를 사용하는 것이 더 편리함.
 
 <div id="line-demo-2"></div>
+
+> 차트에 마우스를 올리면 😏
 ]
 
 ---
