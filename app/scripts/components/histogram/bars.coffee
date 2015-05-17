@@ -24,6 +24,7 @@ module.exports = React.createClass
             transition: '0.5s'
             cursor: if click is null then 'auto' else 'pointer'
             transform: translate(this.props.scales.x(idx), this.props.height - this.props.scales.y(value)) + ' scaleY(' + this.props.scales.y(value) + ')' + ' scaleX(' + scaleWidth + ')'
+            '-webkit-transform': translate(this.props.scales.x(idx), this.props.height - this.props.scales.y(value)) + ' scaleY(' + this.props.scales.y(value) + ')' + ' scaleX(' + scaleWidth + ')'
           }}
           onClick={click}
         />
