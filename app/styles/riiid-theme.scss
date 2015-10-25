@@ -1,9 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
-@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
-@font-face {
-  font-family: 'Noto Sans';
-  src: url('https://raw.githubusercontent.com/chitacan/react-with-d3/master/app/fonts/NotoSansKR-Regular.otf') format('opentype');
-}
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 /* Color Palette (from color_system_v20150129.png) */
 $C01   : #8065e4; // purple
@@ -38,7 +35,7 @@ $C14   : #272727;
 $C15   : #111111;
 
 body {
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans KR', sans-serif;
   color: $C10;
 }
 
