@@ -43,7 +43,7 @@ body {
   font-family: 'hanna';
 }
 .center h1 .en{
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 h1, h2, h3 {
@@ -165,3 +165,52 @@ blockquote {
   color: #777;
   border-left: 4px solid $C12;
 }
+
+.legend {
+  text-align: left;
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .checkbox {
+    margin: 0;
+    label {
+      color: #aaa;
+      font-size: 80%;
+    }
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    float: left;
+    color: #aaa;
+    list-style:none;
+    li {
+      display: inline-block;
+      font-size: 80%;
+      height: 18px;
+      list-style: none;
+      vertical-align: text-top;
+    }
+    span.box {
+      display: inline-block;
+      height: 11px;
+      width: 11px;
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
