@@ -42,7 +42,7 @@ class: center, middle
 * 내가 제품을 어떻게 사용하고 있는지 시각적으로 확인할 수 있도록
 * 7일안에 `iOS`, `Android` 동시에 😱
 * `D3` 를 활용해 차트를 만들고 `html` 파일과 묶어 `webview` 에서 로드
-* `D3`, `coffeescript`, `browserify`, `webview` 사용
+* `D3`, `coffeescript`, `webview` 사용
 
 ![:scale 40%](img/screenshot.png)
 ]
@@ -73,8 +73,14 @@ class: center, middle
 .right-column[
 `D3` 만으로는 어렵지 않을까?
 
-* `D3` 의 결과물은 CSS, DOM 에 의존성을 가지고 있음
+* `D3` 코드에 필요한 데이터나, 상태를 관리하는 도구가 `D3` 에는 없음
 * `D3` 코드를 재사용하기 위해서는 추가적인 작업이 필요함
+
+차트의 갯수가 늘어나도 관리하게 쉬웠으면 좋겠다!!
+
+* 간단한 조작으로 DOM에 붙은 차트를 다른 차트로 교체
+
+컴포넌트?
 
 ]
 
@@ -120,7 +126,9 @@ class: center, middle
 
 * 데이터 시각화의 필수 라이브러리
 * 데이터 fetching, 변환, DOM과 연결에 필요한 거의 모든 도구 제공
-* [http://bl.ocks.org/mbostock](http://bl.ocks.org/mbostock)
+* http://d3js.org/, http://bl.ocks.org/mbostock
+
+![:scale 97%](img/screenshot_blocks.png)
 ]
 
 ---
@@ -269,7 +277,7 @@ React.createClass({
 `props`, `state`, `render` 이해하기
 
 * `props` : 부모 컴포넌트로 부터 전달된 값 (변경불가)
-* `state` : 컴포넌트가 가지는 상태
+* `state` : 컴포넌트가 가지는 상태 (`setState` 를 통해 변경가능)
 * `render` : `props` 와 `state` 를 조합해 컴포넌트가 표시할 뷰를 만들어내는 부분
 
 ```javascript
@@ -299,6 +307,7 @@ ReactComponent(props_2) = dom_2
 ReactComponent(props_1) = dom_1
 ```
 
+수학시간에 잠깐 배웠던 함수합성을 생각하면,
 어? 그럼 `D3` 랑 합성하는게 가능하지 않을까요?
 
 ```javascript
@@ -350,6 +359,8 @@ class: center, middle
 
 .right-column[
 별다른 고민없이 `componentDidMount` 에 모든 `D3` 코드를 다 때려 넣어도 됩니다 👻
+
+[`Triangles.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/triangles.coffee)
 
 ```javascript
   componentDidMount() {
@@ -410,6 +421,8 @@ class: center, middle
 
 .right-column[
 하지만 `props` 업데이트나 `state` 변경에 대응하기 위해서는 `componentDidUpdate` 에 코드를 나누어 작성하는 것이 좋습니다.
+
+[`multiLineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/multiLineChart.coffee)
 
 ```javascript
 componentDidMount() {
@@ -556,6 +569,8 @@ render () {
 .right-column[
 컴포넌트의 모든 요소를 `D3` 로 렌더링 하면, `render` 에서 매번 데이터를 정리하거나, 따로 `props` 로 넘겨주지 않고, `componentDidUpdate` 에서 한번에 처리할 수 있습니다. 🙋
 
+[`pie.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/pie.coffee)
+
 ```javascript
 componentDidUpdate() {
   this.updateLegend();
@@ -614,6 +629,8 @@ updateLegend() {
 
 https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
+[`lineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/lineChart.coffee)
+
 ```javascript
 render() {
   let x = d3.scale.linear()
@@ -669,6 +686,8 @@ https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
 `D3` 만으로 구현하는 것보다 성능상의 이점이 있을까?
 
+[`bars.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/histogram/bars.coffee)
+
 ```javascript
 render() {
   let data = this.props.data;
@@ -722,6 +741,8 @@ render() {
 
 .right-column[
 이벤트 처리결과를 DOM에 반영하기 위해서 매번 `setState` 를 호출해야 합니다.
+
+[`lineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/lineChart.coffee)
 
 ```javascript
 componentDidMount() {
@@ -824,6 +845,9 @@ class: center, middle
 * 저는 `D3` 빠 이기 때문에 👅
 * [codepen](https://codepen.io/chitacan) 에서 작업한 `D3` 코드를 바로 사용하기 위해
 * `props` 로는 최소한의 데이터만 전달하고 컴포넌트 안에서 필요한 데이터를 변환하는 방식을 선호합니다.
+
+<iframe height='312' scrolling='no' src='//codepen.io/chitacan/embed/vNdEpb/?height=312&theme-id=0&default-tab=result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/chitacan/pen/vNdEpb/'>Cluster</a> by Kyung Yeol Kim (<a href='http://codepen.io/chitacan'>@chitacan</a>) on <a href='http://codepen.io'>CodePen</a>.  </iframe>
+
 ]
 
 ---
