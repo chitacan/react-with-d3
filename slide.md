@@ -7,35 +7,57 @@ class: center, middle
 .footnote.pull-right[🍴  on [github](https://github.com/chitacan/react-with-d3)]
 
 ---
-class: center, middle
-# 왜?
-
-.degrade[어쩌다가 이 둘을...]
-
----
 .left-column[
-  ## # 발단
+  ## # About Me
 ]
 
 .right-column[
-  * [`renote`](https://play.google.com/store/apps/details?id=co.riiid.renote) 의 차트를 `D3` 로 만들게 되었음
-  * 오 생각보다 재미진데?
-  * `D3` 로 이것저것 실험하기 시작
-
-  ![:scale 40%](img/screenshot.png)
+* Software Engineer @Riiid
+* [https://github.com/chitacan](https://github.com/chitacan)
+* Developing back office & Dashboard
+* [D3.js](http://d3js.org/), [React](http://facebook.github.io/react/), [RxJs](https://github.com/Reactive-Extensions/RxJS/)
 ]
 
 ---
 .left-column[
-  ## # 발단
+  ## # About Me
+  ## # Subject
+]
+
+.right-column[
+* `React` 와 `D3` 를 조합하게된 배경
+* 초간단 소개 & 공통점
+* `React` 와 `D3` 를 조합하는 2가지 방법
+* Riiid 는 어떻게 쓰나요?
+]
+
+---
+.left-column[
+  ## # 시작
+]
+
+.right-column[
+[`renote`](https://play.google.com/store/apps/details?id=co.riiid.renote) 의 시각화
+
+* 내가 제품을 어떻게 사용하고 있는지 시각적으로 확인할 수 있도록
+* 7일안에 `iOS`, `Android` 동시에 😱
+* `D3` 를 활용해 차트를 만들고 `html` 파일과 묶어 `webview` 에서 로드
+* `D3`, `coffeescript`, `webview` 사용
+
+![:scale 40%](img/screenshot.png)
+]
+
+---
+.left-column[
+  ## # 시작
   ## # 고민
 ]
 
 .right-column[
 하지만,
 
-* 차트의 갯수가 늘어나고, 지원하는 OS 가 늘어나도,
-* 활용하기 쉽게 만들 수 있을까?
+* 차트의 갯수가 늘어나고, 지원하는 플랫폼이 늘어나도
+* 빠르게 차트를 추가하고, 관리할 수 있을까?
 
 <br/>
 <br/>
@@ -51,10 +73,14 @@ class: center, middle
 .right-column[
 `D3` 만으로는 어렵지 않을까?
 
-* `D3` 는 재사용하기 편한 코드를 만드는 도구가 아님
-* `D3` 의 결과물은 CSS, DOM 에 디펜던시를 가지고 있음
-  * 다른 곳에 적용하기 위해서는 추가적인 작업이 필요함
-  * 외부의 이벤트, 프로퍼티에 대응하기 위해서 추가적인 작업이 필요함
+* `D3` 코드에 필요한 데이터나, 상태를 관리하는 도구가 `D3` 에는 없음
+* `D3` 코드를 재사용하기 위해서는 추가적인 작업이 필요함
+
+차트의 갯수가 늘어나도 관리하게 쉬웠으면 좋겠다!!
+
+* 간단한 조작으로 DOM에 붙은 차트를 다른 차트로 교체
+
+컴포넌트?
 
 ]
 
@@ -62,55 +88,33 @@ class: center, middle
 .left-column[
   ## # 발단
   ## # 고민
-  ## # 💡
+  ## # 개발
 ]
 
 .right-column[
-`react` 로 관리해보면 어떨까?
+[`renote`](https://play.google.com/store/apps/details?id=co.riiid.renote) 의 시각화 V2
 
-* 재사용 가능한 컴포넌트를 쉽게 만들 수 있고,
-* `react` 의 이벤트, 프로퍼티 활용
-* `Flux`, `Relay`, `GraphQL` 와 함께 scale-up 👯
-]
+* 차트를 `React` 컴포넌트로 변환
+* amazon s3 의 static hosting 을 활용해 바이너리에 포함되지 않아도 동작할 수 있도록
+* 전체 차트를 확인할 수 있는 대시보드
+* `D3`, `React`, `coffeescript`, `browserify`, `webview`, `amazon s3` 사용
 
----
-.left-column[
-  ## # 발단
-  ## # 고민
-  ## # 💡
-]
-
-.right-column[
-다른 프로젝트에 적용하기도 수월해 지지 않을까?
-
-  * 모든 코드를 포함한 `index.html` 하나만 릴리즈
-  * 필요한 차트만 파일로 만들어 적용
-
-![:scale 70%](img/build_1.png)
-]
-
----
-.left-column[
-  ## # 발단
-  ## # 고민
-  ## # 💡
-]
-
-.right-column[
-다른 프로젝트에 적용하기도 수월해 지지 않을까?
-
-  * 모든 코드를 포함한 `index.html` 하나만 릴리즈
-  * 필요한 차트만 파일로 만들어 적용
-
-![:scale 70%](img/build_2.png)
+![:scale 40%](img/screenshot_v2.png)
 ]
 
 ---
 class: center, middle
 
-# 오호
+# 오호💡
 
-.degrade[`D3` 로 만든 코드를 `react` 컴포넌트로 만들면,<br> 여러곳에서 활용하기 좋지 않을까?]
+.degrade[`D3` 로 만든 코드를 `React` 컴포넌트로 만들면,<br> 여러곳에서 활용하기 좋지 않을까?]
+
+---
+class: center, middle
+
+# 리액트와 디3
+
+.degrade[초간단 소개 & 공통점]
 
 ---
 .left-column[
@@ -120,9 +124,11 @@ class: center, middle
 .right-column[
 `Data Driven Document` == `DDD` == `D3`
 
-다들 한번쯤은 보셨겠죠?
+* 데이터 시각화의 필수 라이브러리
+* 데이터 fetching, 변환, DOM과 연결에 필요한 거의 모든 도구 제공
+* http://d3js.org/, http://bl.ocks.org/mbostock
 
-[이런 것들](http://bl.ocks.org/mbostock) 을 만들 수 있는 라이브러리
+![:scale 97%](img/screenshot_blocks.png)
 ]
 
 ---
@@ -139,7 +145,7 @@ class: center, middle
 
 `D3` 는
 
-* 데이터와 연결된 `DOM` (html, svg)을 만들기 위한 라이브러리 🎉
+* 데이터와 연결된 `DOM` 을 만들기 위한 라이브러리
 * `데이터` 와 `DOM` 을 연결하는 다양한 도구(selection, scale, dynamic properties)를 제공
 ]
 
@@ -151,28 +157,26 @@ class: center, middle
 ]
 
 .right-column[
-
 `데이터` 와 `DOM` 의 연결을 도와주는 `D3` 의 핵심 도구
 
 * `D3` 로 놀기 위해서는 반드시 이해해야 하는 도구지만
 * `D3` 를 시작하는 사람들에겐 가장 어려운 부분 😭
+* enter, update, exit 패턴
 
-```coffeescript
-selection = d3.selectAll 'rect'
-  .data [1,2,3,4,5,6]
+```javascript
+selection = d3.selectAll('rect')
+  .data([1,2,3,4,5,6]);
 
-# enter
-selection.enter()
-  .append 'rect'
-  .x (d, i) -> i
-  .attr 'height', (d) -> d
+// enter
+selection.enter().append('rect')
+  .x((d, i) => i)
+  .attr('height', d => d);
 
-# update
-selection
-  .x (d, i) -> i
-  .attr 'height', (d) -> d
+// update
+selection.x((d, i) => i)
+  .attr('height', d => d)
 
-# exit
+// exit
 selection.exit().remove()
 ```
 ]
@@ -185,125 +189,208 @@ selection.exit().remove()
 ]
 
 .right-column[
-배열이 하나 있다고 💭 봅시다.
-
-아이템의 갯수만큼 사각형 (`rect`) 을 그리고 싶습니다.
-
-배열의 크기가 달라질 때마다 사각형의 갯수도 변할 수 있어야 합니다.
-어떻게 구현하는 것이 좋을까요?
-
-아래와 같이 배열의 아이템에 해당하는 사각형을 선택 (selection) 할 수 있는 함수가 있다만 간단할 겁니다.
-
-* 추가되는 배열의 아이템 👉 enter()
-* 삭제되는 배열의 아이템 👉 exit()
-
 <div id="selection-demo"></div>
 ]
 
----
-.left-column[
-  ## # D3?
-  ## # 편견
-  ## # Selection
-  ## # functional
-]
-
 .right-column[
-`Selection` 은 데이터와 DOM 을 연결하는데 필요한 도구일 뿐 아니라, 함수형 코드를 작성하는 기본 단위
+* 추가되는 배열의 아이템 선택 👉 enter
+* 삭제되는 배열의 아이템 선택 👉 exit
+* 변경된 배열의 아이템 선택 👉 update
 
-* 전달된 데이터만 같다면, `selection` 을 여러번 수행해도 항상 같은 DOM 을 볼 수 있음 (`render` 와 비슷?)
-* 데이터를 다루는데 필요한 `동작` 을 선언할 수 있도록 도와줌
-]
+```javascript
+selection = d3.selectAll('rect')
+  .data([1,2,3,4,5,6]);
 
----
-.left-column[
-  ## # D3?
-  ## # 편견
-  ## # Selection
-  ## # functional
-]
+// enter
+selection.enter().append('rect')
+  .x((d, i) => i)
+  .attr('height', d => d);
 
-.right-column[
-`f(x) = y`
+// update
+selection.x((d, i) => i)
+  .attr('height', d => d)
 
-같은 `x` 를 주면 항상 같은 `y` 를 받을 수 있다.
-
-* 같은 `상태` 를 주면 같은 `컴포넌트`가 그려진다 👉 `react`
-* 같은 `데이터` 를 주면 같은 `DOM` 이 그려진다 👉 `D3`
-
-이게 왜 중요하냐? 함수는 코드 재사용의 기본단위!!
-
-* 뷰를 함수처럼 👉 재사용성 📈
-* 문서를 함수처럼 👉 재사용성 📈
-
-`D3` 는 다양한 데이터와 DOM 간의 연결에 집중하고 있기 때문에, 재사용성은 `react` 보다 부족함
-]
-
----
-class: center, middle
-
-# 리액트와 디3
-
-.degrade[서로의 장점을 활용하면?]
-
----
-class: center, middle
-
-# 연결해 봅시다.
-
----
-.left-column[
-  ## # API
-]
-
-.right-column[
-자주 사용하게되는 `react` API 들
-
-* `findDOMNode` (`getDOMNode` 🚮)
-* `componentDidMount`
-* `render`
-* `componentDidUpdate`
-* `componentWillUnmount`
-]
-
----
-.left-column[
-  ## # API
-  ## # create
-]
-
-.right-column[
-별다른 고민없이 `componentDidMount` 에 모든 `D3` 코드를 다 때려 넣어도 됩니다 👻
-
-```coffeescript
-Tri = React.createClass
-
-  componentDidMount: ->
-    el = @getDOMNode()
-    @W = @props.width
-    @H = @props.height
-    @svg = d3.select el
-      .append 'svg'
-      .attr 'width', @W
-      .attr 'height', @H
-    @canvas = @svg.append 'g'
-    @renderTriangles randomize 5, 40
-    @intervalID = setInterval =>
-      @renderTriangles randomize 5, 40
-    , 2000
-
-  renderTriangles: (data)->
-    # update, enter, exit
-
-  render: ->
-    <div className='triangles' style={style} />
+// exit
+selection.exit().remove()
 ```
 ]
 
 ---
 .left-column[
-  ## # API
-  ## # create
+  ## # D3?
+  ## # 편견
+  ## # Selection
+]
+
+.right-column[
+전달된 데이터만 같다면, `Selection` 을 여러번 수행해도 결과는 항상 같습니다. 즉 항상 같은 `DOM` 을 보여줍니다.
+
+```javascript
+d3(data_1) = dom_1
+d3(data_2) = dom_2
+// later ...
+d3(data_1) = dom_1
+```
+]
+
+---
+.left-column[
+  ## # React?
+]
+
+.right-column[
+facebook에서 공개한 UI 전용 라이브러리.
+UI 를 작은 컴포넌트로 나누어 개발하고, 이를 조합해서 전체 UI 를 구성
+
+```javascript
+// Title.jsx
+React.createClass({
+  render() {
+    return <h1>{this.props.foo}</h1>;
+  }
+});
+
+// Root.jsx
+import Title from './Title.jsx';
+import List from './List.jsx';
+
+React.createClass({
+  render() {
+    return (
+    <div>
+      <Title foo="hello" />
+      <List bar={this.state.list} />
+    </div>
+    );
+  }
+});
+```
+]
+
+---
+.left-column[
+  ## # React?
+  ## # 시작하기
+]
+
+.right-column[
+`props`, `state`, `render` 이해하기
+
+* `props` : 부모 컴포넌트로 부터 전달된 값 (변경불가)
+* `state` : 컴포넌트가 가지는 상태 (`setState` 를 통해 변경가능)
+* `render` : `props` 와 `state` 를 조합해 컴포넌트가 표시할 뷰를 만들어내는 부분
+
+```javascript
+function componentName(props) {
+  var state = {};
+  // mix up with props & state
+  return <div attr={this.state.foo}>{this.props.bar}</div>;
+}
+```
+]
+
+---
+.left-column[
+  ## # React?
+  ## # 시작하기
+  ## # 공통점
+]
+
+.right-column[
+전달된 `props` 가 같고, `state` 가 동일하면 `render` 의 리턴값은 항상 동일.
+즉, 컴포넌트가 같은 화면을 그린다.
+
+```javascript
+ReactComponent(props_1) = dom_1
+ReactComponent(props_2) = dom_2
+// later ...
+ReactComponent(props_1) = dom_1
+```
+
+수학시간에 잠깐 배웠던 함수합성을 생각하면,
+어? 그럼 `D3` 랑 합성하는게 가능하지 않을까요?
+
+```javascript
+d3(ReactComponent(props_1)) = dom_1
+d3(ReactComponent(props_2)) = dom_2
+```
+]
+
+---
+.left-column[
+  ## # React?
+  ## # 시작하기
+  ## # 공통점
+]
+
+.right-column[
+`React` 와 `D3` 는 동일한 인자가 주어지면 동일한 DOM 을 보여주는 함수라는 점에서 상당히 유사한 부분이 있으며, 이를 이용해 두 라이브러리를 함께 사용하는 것이 가능합니다.
+
+```javascript
+d3(data) = dom
+ReactComponent(props) = dom
+
+d3(ReactComponent(props)) = dom
+```
+]
+
+---
+class: center, middle
+
+# 섞어 봅시다.
+
+---
+.left-column[
+  ## # mix
+]
+
+.right-column[
+`React` 와 `D3` 를 조합하는 방법은 크가 2가지가 있습니다.
+
+* `D3` 의 enter, update, exit 패턴을 활용하고, `React` 는 컴포넌트의 라이프 사이클만 담당 (`d3(react())`)
+* `D3` 의 데이터 변환, scale 등의 유틸리티만 활용하고, `React` 가 렌더링을 담당 (`d3 << react`)
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+]
+
+.right-column[
+별다른 고민없이 `componentDidMount` 에 모든 `D3` 코드를 다 때려 넣어도 됩니다 👻
+
+[`Triangles.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/triangles.coffee)
+
+```javascript
+  componentDidMount() {
+*   let el = this.findDOMNode(this);
+    this.W = this.props.width;
+    this.H = this.props.height;
+*   this.svg = d3.select(el).append('svg')
+      .attr('width',  this.W)
+      .attr('height', this.H);
+    this.plot= this.svg.append('g');
+    this.renderTriangles randomize(5, 40);
+    this.intervalID = setInterval(() => {
+      this.renderTriangles(randomize(5, 40));
+    }, 2000);
+  }
+
+  renderTriangles(data) {
+    // update, enter, exit
+  }
+
+  render() {
+    return <div className='triangles' style={style} />;
+  }
+```
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
 ]
 
 .right-column[
@@ -314,117 +401,272 @@ Tri = React.createClass
 
 ---
 .left-column[
-  ## # API
-  ## # create
-  ## # render
+  ## # mix
+  ## # d3(react())
 ]
 
 .right-column[
-하지만 `setState` 를 통해 컴포넌트를 업데이트 하기 위해서는 `render` 또는 `componentDidUpdate` 를 활용
+하지만 `props` 업데이트나 `state` 변경에 대응하기 위해서는 `componentDidUpdate` 에 코드를 나누어 작성하는 것이 좋습니다.
 
-```coffeescript
-componentDidMount: ->
-  el = React.findDOMNode @
-  oW = @props.width
-  oH = @props.height
+* `componentDidMount` : DOM element 와 scale, layout 인스턴스 생성
+* `componentDidUpdate` : size 조절, scale 재설정 & enter, update, exit
+* `shouldComponentUpdate` : `componentDidUpdate` 호출여부 결정
+]
 
-  W = oW - M - M
-  H = oH - M - M
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+]
 
-  svg = d3.select el
-    .append 'svg'
-    .attr 'width', oW
-    .attr 'height', oH
+.right-column[
+하지만 `props` 업데이트나 `state` 변경에 대응하기 위해서는 `componentDidUpdate` 에 코드를 나누어 작성하는 것이 좋습니다.
 
-  plot = svg.append 'g'
-    .attr 'transform', "translate(#{M},#{M})"
+[`multiLineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/multiLineChart.coffee)
 
-  #...
-  @setState { data:@randomize DATA, 0, 40 }
-  @intervalID = setInterval =>
-    @setState { data:@randomize DATA, 0, 40 }
-  , 3000
+```javascript
+componentDidMount() {
+  let el = React.findDOMNode(this);
+  let oW = this.props.width;
+  let oH = this.props.height;
+  let W  = oW - M - M;
+  let H  = oH - M - M;
+  let svg = d3.select(el).append('svg')
+    .attr('width', oW)
+    .attr('height', oH);
 
-componentDidUpdate: ->
-  data = @state.data
+  this.plot = svg.append('g')
+    .attr('transform', 'translate(' + M + ', ' + M + ')');
+},
+
+componentDidUpdate() {
+  let data = this.props.data;
+  let g = this.plot.selectAll('g');
   g.enter()
-    .append 'g'
-    .append 'path'
-    .attr 'fill', 'none'
-    .attr 'stroke', (d, i) -> COLORS[i]
-    .attr 'd', (d) => @line d
-
-  g.select 'path'
+    .append('g')
+    .append('path')
+    .attr('fill', 'none')
+    .attr('stroke', (d, i) => COLORS[i])
+    .attr('d', (d) => this.line(d));
+  g.select('path')
     .transition()
-    .delay (d, i) -> i * ANIM_DELAY
-    .attr 'd', (d) => @line d
-    .duration ANIM_DURATION
+    .delay((d, i) -> i * ANIM_DELAY)
+    .attr('d', (d) => this.line(d))
+    .duration(ANIM_DURATION);
+  g.exit().remove();
+},
 
-  g.exit().remove()
-
-  render: -> <div></div>
+render() {
+  return <div></div>;
+}
 ```
 ]
 
 ---
 .left-column[
-  ## # API
-  ## # create
-  ## # render
+  ## # mix
+  ## # d3(react())
 ]
 
 .right-column[
-하지만 `setState` 를 통해 컴포넌트를 업데이트 하기 위해서는 `render` 또는 `componentDidUpdate` 를 활용
+하지만 `props` 업데이트나 `state` 변경에 대응하기 위해서는 `componentDidUpdate` 에 코드를 나누어 작성하는 것이 좋습니다.
 
 <div id="multiline-demo" style="margin-top: 3em;"></div>
 ]
 
 ---
-class: center, middle
-
-# 리액트를 좀 더 활용해 봅시다.
-
----
 .left-column[
-  ## # SVG
+  ## # mix
+  ## # d3(react())
 ]
 
 .right-column[
-`react`는 `html` 엘리먼트 뿐만 아니라 `svg` 앨리먼트도 지원!!
+스크린 사이즈에 따라 크기가 변하는 컴포넌트를 만들고 싶다면, `componentDidMount` 코드의 마지막에 `forceUpdate()` 를 호출하는 것도 고려해 볼만합니다.
+
+> componentDidMount 가 호출되는 시점에 컴포넌트의 사이즈가 0 일 수도 있음
+
+```javascript
+componentDidMount() {
+  let el = React.findDOMNode(this);
+  let oW = this.props.width;
+  let oH = this.props.height;
+  let W  = oW - M - M;
+  let H  = oH - M - M;
+  let svg = d3.select(el).append('svg')
+    .attr('width', oW)
+    .attr('height', oH);
+
+  this.plot = svg.append('g')
+    .attr('transform', 'translate(' + M + ', ' + M + ')');
+
+* this.forceUpdate();
+}
+```
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+]
+
+.right-column[
+컴포넌트의 모든 요소를 `D3` 로 렌더링 하는 것을 추천 (특히 legend)
+
+`React` 만으로 legend 를 그리기 위해서는 `state` 를 통해 데이터를 `render` 함수로 전달해야 하는데, `componentDidUpdate` 에서는 불가능하고,
+```javascript
+componentDidUpdate() {
+
+  // enter(), udpate(), exit() ...
+
+  let groupByType = d3.nest()
+  .key(d => d.type)
+  .rollup(values => values.length)
+  .entries(this.props.users);
+
+  // may cause Maximum call stack size exceeded exception !!
+  this.setState({legend: groupByType});
+},
+```
+
+> 그래도 이렇게 구현하고 싶다면, 부모 컴포넌트에서 groupByType으로 정리해서 넘겨줘도 됩니다.
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+]
+
+.right-column[
+`render` 함수에서 데이터를 정리하면, `render` 함수에서 불필요한 함수 호출이 증가할 수 있습니다.
+
+```javascript
+render () {
+  // this will call every render()
+  let groupByType= d3.nest()
+  .key(d => d.type)
+  .rollup(values => values.length)
+  .entries(this.props.users);
+
+  return (
+    <div>
+      <ul>
+      { this.props.groupByType.map(value => <Legend data={value}/>) }
+      </ul>
+    </div>
+  );
+},
+```
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+]
+
+.right-column[
+컴포넌트의 모든 요소를 `D3` 로 렌더링 하면, `render` 에서 매번 데이터를 정리하거나, 따로 `props` 로 넘겨주지 않고, `componentDidUpdate` 에서 한번에 처리할 수 있습니다. 🙋
+
+[`pie.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/pie.coffee)
+
+```javascript
+componentDidUpdate() {
+  this.updateLegend();
+},
+
+updateLegend() {
+  let groupByType= d3.nest()
+  .key(d => d.type)
+  .rollup(values => values.length)
+  .entries(this.props.users);
+
+  let ul = d3.select(this.el).select('ul');
+
+  let div = ul.selectAll('div')
+    .data(groupByType);
+
+  let enter = div.enter()
+    .append('div');
+
+  enter.append('li');
+    .append('span');
+    .attr('class', 'box')
+    .style('background', (d, i) => COLOR[i]);
+
+  enter.append('li').text((d) => d.key);
+
+  div.select('.box')
+    .style('background', (d, i) => COLOR[i]);
+
+  div.exit().remove()
+}
+```
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+]
+
+.right-column[
+컴포넌트의 모든 요소를 `D3` 로 렌더링 하면, `render` 에서 매번 데이터를 정리하거나, 따로 `props` 로 넘겨주지 않고, `componentDidUpdate` 에서 한번에 처리할 수 있습니다. 🙋
+
+<div id="pie-demo" style="margin-top: 3em;"></div>
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
+]
+
+.right-column[
+`React`는 `html` 엘리먼트 뿐만 아니라 `svg` 앨리먼트도 지원하기때문에,  렌더링을 모두 `React`에 맡기는 것도 가능합니다.
 
 https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
-```coffeescript
-render: ->
-  x = d3.scale.linear()
-    .domain d3.extent @state.data
-    .range [xMin, xMax]
-  y = d3.scale.linear()
-    .domain d3.extent @state.data
-    .range [yMin, yMax]
+[`lineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/lineChart.coffee)
 
-  # create line
-  line = d3.svg.line()
+```javascript
+render() {
+  let x = d3.scale.linear()
+    .domain(d3.extent(this.state.data))
+    .range([xMin, xMax]);
+  let y = d3.scale.linear()
+    .domain(d3.extent(this.state.data))
+    .range([yMin, yMax]);
+
+  // create line
+  let line = d3.svg.line()
     .interpolate('monotone')
-    .x (d, i) -> x(i)
-    .y (d) -> y(d)
+    .x((d, i) => x(i))
+    .y((d) => y(d))
 
+  return (
   <div>
 *   <svg ref='svg' width={width} height={height}>
-*     <path d={line(@state.data)} />
+*     <path d={line(this.state.data)} />
     </svg>
   </div>
+  );
+}
 ```
 
 ]
 
 ---
 .left-column[
-  ## # SVG
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
 ]
 
 .right-column[
-`react`는 `html` 엘리먼트 뿐만 아니라 `svg` 앨리먼트도 지원!!
+`React`는 `html` 엘리먼트 뿐만 아니라 `svg` 앨리먼트도 지원하기때문에,  렌더링을 모두 `React`에 맡기는 것도 가능합니다.
 
 https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
@@ -433,24 +675,27 @@ https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
 ---
 .left-column[
-  ## # SVG
-  ## # render
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
 ]
 
 .right-column[
-렌더링을 모두 `react`에 맡기는 것도 가능합니다.
+심지어 `D3` 로 그릴 차트의 구성요소를 컴포넌트로 나누어 조합하는 것도 가능합니다.
 > from [github](https://github.com/znation/scalable-data-visualization), [youtube](https://www.youtube.com/watch?v=2ii1lEkIv1s&index=15&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
 
 `D3` 만으로 구현하는 것보다 성능상의 이점이 있을까?
 
-```coffeescript
-render: ->
-  data = this.props.data
-  values = toArray data.getValues()
+[`bars.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/histogram/bars.coffee)
+
+```javascript
+render() {
+  let data = this.props.data;
+  let values = toArray(data.getValues());
+  return(
   <g>
-    {values.map (value, idx) =>
-      click = null
-      scaleWidth = (this.props.width/(data.getDay())) + 0.5
+    {values.map((value, idx) => {
+      scaleWidth = (this.props.width/(data.getDay())) + 0.5;
       <rect
         fill='#48cc81'
         key={idx}
@@ -459,24 +704,26 @@ render: ->
         width={1}
         height={1}
         style={{
-          transition: '0.5s'
-          cursor: if click is null then 'auto' else 'pointer'
-          transform: translate(this.props.scales.x(idx), this.props.height - this.props.scales.y(value)) + " scaleY(#{this.props.scales.y(value)}) scaleX(#{scaleWidth})"
+          transition: '0.5s',
         }}
       />
+      })
     }
   </g>
+  );
+}
 ```
 ]
 
 ---
 .left-column[
-  ## # SVG
-  ## # render
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
 ]
 
 .right-column[
-렌더링을 모두 `react`에 맡기는 것도 가능합니다.
+심지어 `D3` 로 그릴 차트의 구성요소를 컴포넌트로 나누어 조합하는 것도 가능합니다.
 
 > from [github](https://github.com/znation/scalable-data-visualization), [youtube](https://www.youtube.com/watch?v=2ii1lEkIv1s&index=15&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
 
@@ -487,15 +734,69 @@ render: ->
 
 ---
 .left-column[
-  ## # SVG
-  ## # All
-  ## # Event
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
 ]
 
 .right-column[
-`react` 와 `D3` 의 이벤트를 모두 사용할 수 있음.
+이벤트 처리결과를 DOM에 반영하기 위해서 매번 `setState` 를 호출해야 합니다.
 
-하지만 `mousemove` 와 같이 정확한 포인트가 필요한 경우 `D3` 의 이벤트를 사용하는 것이 더 편리함.
+[`lineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/lineChart.coffee)
+
+```javascript
+componentDidMount() {
+  d3.select(React.findDOMNode(this.refs.svg))
+    .on('mousemove', () => {
+      this.handleMouseMove(d3.mouse(this));
+    }
+},
+
+handleMouseMove(point) {
+  let x = this.x.invert(point[0] / this.getScaleFactor());
+  let i = d3.bisect(X_RANGE, this.x);
+  let d0 = X_RANGE[i - 1];
+  let d1 = X_RANGE[i];
+  let p = i - d0 > d1 ? d1 : d0;
+* this.setState({point: p});
+}
+
+render() {
+  this.x = d3.scale.linear()
+    .domain([0, 30])
+    .range([xMin, xMax]);
+  this.y = d3.scale.linear()
+    .domain(d3.extent(this.state.data))
+    .range([yMin, yMax]);
+
+  let circle;
+  if (this.state.point && highlight) {
+    let p = this.state.point;
+    circle = <circle cx={this.x(p)}
+                     cy={this.y(this.state.data[p])}
+                     r={6}
+                     style={circleStyle}/>
+  }
+  return
+  <div className='center'>
+    <svg ref='svg' width={width} height={height}>
+      <path d={line(this.state.data)} style={pathStyle} />
+      {circle}
+    </svg>
+  </div>
+}
+```
+]
+
+---
+.left-column[
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
+]
+
+.right-column[
+이벤트 처리결과를 DOM에 반영하기 위해서 매번 `setState` 를 호출해야 합니다.
 
 <div id="line-demo-2"></div>
 
@@ -504,86 +805,130 @@ render: ->
 
 ---
 .left-column[
-  ## # SVG
-  ## # All
-  ## # Event
+  ## # mix
+  ## # d3(react())
+  ## # d3 << react
+  ## # 정리
 ]
 
 .right-column[
-`react` 와 `D3` 의 이벤트를 모두 사용할 수 있음.
+d3(react())
 
-하지만 `mousemove` 와 같이 정확한 포인트가 필요한 경우 `D3` 의 이벤트를 사용하는 것이 더 편리함.
+* 우아한 `D3` 의 enter, update, exit 를 그대로 사용
+* `D3` 의 애니메이션 활용 가능
+* 데이터가 어디에 매핑되었는지 확인 가능
+* 자칫 잘못하면 컴포넌트의 코드가 길어질 수도 있음
+* `react-native` 등 다른 플랫폼을 지원하는 시리즈에서는 사용 불가능 ...
 
-```coffeescript
-componentDidMount: ->
-  self = @
-  d3.select React.findDOMNode @refs.svg
-    .on 'mousemove', ->
-      self.handleMouseMove d3.mouse @
+d3 << react
 
-handleMouseMove: (point)->
-* x = @x.invert point[0] / @getScaleFactor()
-  i = d3.bisect X_RANGE, x
-  d0 = X_RANGE[i - 1]
-  d1 = X_RANGE[i]
-  @setState point: if i - d0 > d1 - i then d1 else d0
-
-render: ->
-  @x = d3.scale.linear()
-    .domain([0, 30])
-    .range [xMin, xMax]
-  @y = d3.scale.linear()
-    .domain(d3.extent @state.data )
-    .range [yMin, yMax]
-
-  if @state.point? and highlight
-    p = @state.point
-    circle = <circle cx={@x(p)}
-                     cy={@y(@state.data[p])}
-                     r={6}
-                     style={circleStyle}/>
-  <div className='center'>
-    <svg ref='svg' width={width} height={height}>
-      <path d={line(@state.data)} style={pathStyle} />
-      {circle}
-    </svg>
-  </div>
-```
+* 하나의 차트를 여러 컴포넌트로 나눠 재사용성을 극대화
+* `react-canvas` 를 타겟으로 렌더링해 성능 향상을 꾀할 수도 있다. (실험해 보고 싶다는)
+* `render` 함수가 굉장히 복잡해 질 수 있음
 ]
 
 ---
 class: center, middle
 
-# `react-d3` 는 어떤가요?
+# 뤼ㄷ은 어떻게 사용하나요?
 
-[https://github.com/esbullington/react-d3](https://github.com/esbullington/react-d3)
-
-.degrade[`D3` 의 차트를 `react` 컴포넌트로 만든것]
-
----
-class: center, middle
-
-# 결론
-
-.degrade[`D3` 를 `react` 컴포넌트화]
+.degrade[한나체 ㅂㄷㅂㄷ]
 
 ---
 .left-column[
-  ## # 얻는 것?
+  ## # d3(react())
 ]
 
 .right-column[
-* `react` 빠 인증 ? 👅
-* `D3` 코드의 재사용성 극대화
-* `react` 스러운 데이터 흐름, 이벤트 처리
-* css 도 js 파일에
-* 성능.. 어떻게 비교할 수 있을까?
+륃은 `d3(react())` 방식을 사용합니다.
+
+* 저는 `D3` 빠 이기 때문에 👅
+* [codepen](https://codepen.io/chitacan) 에서 작업한 `D3` 코드를 바로 사용하기 위해
+* `props` 로는 최소한의 데이터만 전달하고 컴포넌트 안에서 필요한 데이터를 변환하는 방식을 선호합니다.
+
+<iframe height='312' scrolling='no' src='//codepen.io/chitacan/embed/vNdEpb/?height=312&theme-id=0&default-tab=result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/chitacan/pen/vNdEpb/'>Cluster</a> by Kyung Yeol Kim (<a href='http://codepen.io/chitacan'>@chitacan</a>) on <a href='http://codepen.io'>CodePen</a>.  </iframe>
+
 ]
 
 ---
-## 재사용성의 극대화?
+.left-column[
+  ## # d3(react())
+  ## # 사용한 곳?
+]
 
-사실 이 슬라이드의 데모는 모두 `D3`로 그려지는 `react` 컴포넌트 🙋
+.right-column[
+sledge
+
+* renote 2.0 알파테스트
+* 웹에서 문제를 풀고, 추천 받을 수 있는 UI + 전체 유저의 성적을 한눈에 확인할 수 있는 대시보드
+* mobile / desktop 을 동시에 지원하기 위해 responsive 한 `D3` 맛 `React` 컴포넌트 작성
+* `D3`, `React`, `reflux`, `react-bootstrap`, `babel`, `browserify`, `q`, `lodash`, `amazon s3`
+
+![:scale 37%](img/screenshot_sledge_1.png)
+![:scale 37%](img/screenshot_sledge_2.png)
+]
+
+---
+.left-column[
+  ## # d3(react())
+  ## # 사용한 곳?
+]
+
+.right-column[
+sledge
+
+* renote 2.0 알파테스트
+* 웹에서 문제를 풀고, 추천 받을 수 있는 UI + 전체 유저의 성적을 한눈에 확인할 수 있는 대시보드
+* mobile / desktop 을 동시에 지원하기 위해 responsive 한 `D3` 맛 `React` 컴포넌트 작성
+* `D3`, `React`, `reflux`, `react-bootstrap`, `babel`, `browserify`, `q`, `lodash`, `amazon s3`
+
+![:scale 90%](img/screenshot_sledge_3.png)
+]
+
+---
+.left-column[
+  ## # d3(react())
+  ## # 사용한 곳?
+]
+
+.right-column[
+lapland
+
+* SANTA! 의 back office
+* 문제 분석과 검색, 유저 성적 분석 / 관리
+* rxjs 를 활용해 비동기 작업 처리
+* `D3`, `React`, `redux`, `react-bootstrap`, `coffeescript`, `browserify`, `rxjs`, `lodash`, `amazon s3`
+
+![:scale 35%](img/screenshot_lapland_1.png)
+![:scale 35%](img/screenshot_lapland_2.png)
+]
+
+---
+.left-column[
+  ## # d3(react())
+  ## # 사용한 곳?
+]
+
+.right-column[
+lapland
+
+* SANTA! 의 back office
+* 문제 분석과 검색, 유저 성적 분석 / 관리
+* rxjs 를 활용해 비동기 작업 처리
+* `D3`, `React`, `redux`, `react-bootstrap`, `coffeescript`, `browserify`, `rxjs`, `lodash`, `amazon s3`
+
+![:scale 90%](img/screenshot_lapland_3.png)
+]
+
+---
+.left-column[
+  ## # d3(react())
+  ## # 사용한 곳?
+  ## # 아!
+]
+
+.right-column[
+사실 이 슬라이드의 데모도 모두 `D3`로 그려지는 `React` 컴포넌트 🙋
 
 `slide.md`
 
@@ -594,40 +939,22 @@ class: center, middle
 `app.coffee`
 
 ```coffeescript
-Triangles   = require './components/triangles.coffee'
+Triangles = require './components/triangles.coffee'
 
 slides.on 'beforeShowSlide', (slide)->
   switch slide.getSlideIndex()
-    when 19
+    when 21
 *     React.render <Triangles width={400} height={200}/>,
 *     getEl 'triangles-demo'
 
 slides.on 'hideSlide', (slide)->
   switch slide.getSlideIndex()
-*   when 19 then React.unmountComponentAtNode getEl 'triangles-demo'
+*   when 21 then React.unmountComponentAtNode getEl 'triangles-demo'
 ```
-
----
-.left-column[
-  ## # 얻는 것?
-  ## # 잃는 것?
-]
-
-.right-column[
-* 우아한 `D3` 의 `enter`, `update`, `exit` 패턴
-* 집중력 & 심플함 (늘어나는 js 파일들...)
 ]
 
 ---
-.left-column[
-  ## # 얻는 것?
-  ## # 잃는 것?
-  ## # 결국
-]
+class: center, middle
 
-.right-column[
-* 데이터와 DOM 연결을 우아하게 할 것인가?
-* 재사용성을 극대화 할 것인가?
+# 끝
 
-서로의 장점을 살릴 수 있는 조합법이 👍
-]
