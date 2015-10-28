@@ -190,30 +190,13 @@ selection.exit().remove()
 ]
 
 .right-column[
-<div id="selection-demo"></div>
-]
-
-.right-column[
 * 추가되는 배열의 아이템 선택 👉 enter
 * 삭제되는 배열의 아이템 선택 👉 exit
 * 변경된 배열의 아이템 선택 👉 update
 
-```javascript
-selection = d3.selectAll('rect')
-  .data([1,2,3,4,5,6]);
+[`selection.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/selection.coffee)
 
-// enter
-selection.enter().append('rect')
-  .x((d, i) => i)
-  .attr('height', d => d);
-
-// update
-selection.x((d, i) => i)
-  .attr('height', d => d)
-
-// exit
-selection.exit().remove()
-```
+<div id="selection-demo"></div>
 ]
 
 ---
@@ -351,14 +334,14 @@ class: center, middle
 .right-column[
 `React` 와 `D3` 를 조합하는 방법은 크가 2가지가 있습니다.
 
-* `D3` 의 enter, update, exit 패턴을 활용하고, `React` 는 컴포넌트의 라이프 사이클만 담당 (`d3(react())`)
+* `D3` 의 enter, update, exit 패턴을 활용하고, `React` 는 컴포넌트의 라이프 사이클만 담당 (`d3 • react`)
 * `D3` 의 데이터 변환, scale 등의 유틸리티만 활용하고, `React` 가 렌더링을 담당 (`d3 << react`)
 ]
 
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
@@ -394,19 +377,21 @@ class: center, middle
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
 별다른 고민없이 `componentDidMount` 에 모든 `D3` 코드를 다 때려 넣어도 됩니다 👻
 
-<div id="triangles-demo" style="margin-top: 3em;"></div>
+[`Triangles.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/triangles.coffee)
+
+<div id="triangles-demo"></div>
 ]
 
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
@@ -422,7 +407,7 @@ class: center, middle
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
@@ -477,19 +462,21 @@ render() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
 하지만 `props` 업데이트나 `state` 변경에 대응하기 위해서는 `componentDidUpdate` 에 코드를 나누어 작성하는 것이 좋습니다.
 
-<div id="multiline-demo" style="margin-top: 3em;"></div>
+[`multiLineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/multiLineChart.coffee)
+
+<div id="multiline-demo"></div>
 ]
 
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
@@ -519,13 +506,13 @@ componentDidMount() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
 컴포넌트의 모든 요소를 `D3` 로 렌더링 하는 것을 추천 (특히 legend)
 
-`React` 로 legend 를 그리려면, `setState` 를 통해 데이터를 `render` 함수로 전달해야 하는데, `componentDidUpdate` 에서는 불가능하고,
+`React` 로 legend 를 그리면, `setState` 를 통해 데이터를 `render` 함수로 전달해야 하는데, `componentDidUpdate` 에서는 불가능하고,
 ```javascript
 componentDidUpdate() {
 
@@ -540,13 +527,11 @@ componentDidUpdate() {
   this.setState({legend: groupByType});
 },
 
-render () {
+render() {
   return (
-    <div>
-      <ul>
-      { this.state.legend.map(value => <Legend data={value}/>) }
-      </ul>
-    </div>
+    <ul>
+    { this.state.legend.map(value => <Legend data={value}/>) }
+    </ul>
   );
 }
 ```
@@ -555,7 +540,7 @@ render () {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
@@ -563,7 +548,7 @@ render () {
 
 ```javascript
 render () {
-  // this will call every render()
+  // this will be called every render()
   let groupByType= d3.nest()
   .key(d => d.type)
   .rollup(values => values.length)
@@ -583,7 +568,7 @@ render () {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
@@ -628,19 +613,25 @@ updateLegend() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
 컴포넌트의 모든 요소를 `D3` 로 렌더링 하면, `render` 에서 매번 데이터를 정리하거나, 따로 `props` 로 넘겨주지 않고, `componentDidUpdate` 에서 한번에 처리할 수 있습니다. 🙋
 
-<div id="pie-demo" style="margin-top: 3em;"></div>
+[`pie.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/pie.coffee)
+
+<div id="pie-demo"></div>
+
+> state 를 거의 사용하지 않는 stateless 한 컴포넌트!!
+
+> D3 덕에 DOM 에 연결된 데이터를 볼 수 있는 건 덤!!
 ]
 
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
 ]
 
@@ -681,7 +672,7 @@ render() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
 ]
 
@@ -690,21 +681,22 @@ render() {
 
 https://facebook.github.io/react/docs/tags-and-attributes.html#svg-elements
 
+[`lineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/lineChart.coffee)
+
 <div id="line-demo-1"></div>
 ]
 
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
 ]
 
 .right-column[
-심지어 `D3` 로 그릴 차트의 구성요소를 컴포넌트로 나누어 조합하는 것도 가능합니다.
-> from [github](https://github.com/znation/scalable-data-visualization), [youtube](https://www.youtube.com/watch?v=2ii1lEkIv1s&index=15&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
+모든 차트의 구성요소를 컴포넌트로 나누어 조합하는 것도 가능합니다.
 
-`D3` 만으로 구현하는 것보다 성능상의 이점이 있을까?
+> from [github](https://github.com/znation/scalable-data-visualization), [React.js Conf 2015 - Scalable Data Visualization](https://www.youtube.com/watch?v=2ii1lEkIv1s&index=15&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
 
 [`bars.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/histogram/bars.coffee)
 
@@ -738,16 +730,16 @@ render() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
 ]
 
 .right-column[
-심지어 `D3` 로 그릴 차트의 구성요소를 컴포넌트로 나누어 조합하는 것도 가능합니다.
+모든 차트의 구성요소를 컴포넌트로 나누어 조합하는 것도 가능합니다.
 
-> from [github](https://github.com/znation/scalable-data-visualization), [youtube](https://www.youtube.com/watch?v=2ii1lEkIv1s&index=15&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
+> from [github](https://github.com/znation/scalable-data-visualization), [React.js Conf 2015 - Scalable Data Visualization](https://www.youtube.com/watch?v=2ii1lEkIv1s&index=15&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
 
-`D3` 만으로 구현하는 것보다 성능상의 이점이 있을까?
+[`bars.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/histogram/bars.coffee)
 
 <div id="histogram-demo"></div>
 ]
@@ -755,7 +747,7 @@ render() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
 ]
 
@@ -768,7 +760,7 @@ render() {
 componentDidMount() {
   d3.select(React.findDOMNode(this.refs.svg))
     .on('mousemove', () => {
-      this.handleMouseMove(d3.mouse(this));
+*     this.handleMouseMove(d3.mouse(this));
     }
 },
 
@@ -811,12 +803,14 @@ render() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
 ]
 
 .right-column[
 이벤트 처리결과를 DOM에 반영하기 위해서 매번 `setState` 를 호출해야 합니다.
+
+[`lineChart.coffee`](https://github.com/chitacan/react-with-d3/blob/master/app/scripts/components/lineChart.coffee)
 
 <div id="line-demo-2"></div>
 
@@ -826,17 +820,18 @@ render() {
 ---
 .left-column[
   ## # mix
-  ## # d3(react())
+  ## # d3 • react
   ## # d3 << react
   ## # 정리
 ]
 
 .right-column[
-d3(react())
+d3 • react
 
 * 우아한 `D3` 의 enter, update, exit 를 그대로 사용
+* `stateless` 한 컴포넌트를 만들기 쉬움
+* 데이터가 어떤 `DOM`에 연결되었는지 확인 가능
 * `D3` 의 애니메이션 활용 가능
-* 데이터가 어디에 매핑되었는지 확인 가능
 * 자칫 잘못하면 컴포넌트의 코드가 길어질 수도 있음
 * `react-native` 등 다른 플랫폼을 지원하는 시리즈에서는 사용 불가능 ...
 
@@ -845,6 +840,7 @@ d3 << react
 * 하나의 차트를 여러 컴포넌트로 나눠 재사용성을 극대화
 * `react-canvas` 를 타겟으로 렌더링해 성능 향상을 꾀할 수도 있다. (실험해 보고 싶다는)
 * `render` 함수가 굉장히 복잡해 질 수 있음
+* `stateless` 한 컴포넌트를 만들기 어려움
 ]
 
 ---
@@ -856,11 +852,11 @@ class: center, middle
 
 ---
 .left-column[
-  ## # d3(react())
+  ## # d3 • react
 ]
 
 .right-column[
-륃은 `d3(react())` 방식을 사용합니다.
+륃은 `d3 • react` 방식을 사용합니다.
 
 * 저는 `D3` 빠 이기 때문에 👅
 * [codepen](https://codepen.io/chitacan) 에서 작업한 `D3` 코드를 바로 사용하기 위해
@@ -872,7 +868,7 @@ class: center, middle
 
 ---
 .left-column[
-  ## # d3(react())
+  ## # d3 • react
   ## # 사용한 곳?
 ]
 
@@ -890,7 +886,7 @@ sledge
 
 ---
 .left-column[
-  ## # d3(react())
+  ## # d3 • react
   ## # 사용한 곳?
 ]
 
@@ -907,7 +903,7 @@ sledge
 
 ---
 .left-column[
-  ## # d3(react())
+  ## # d3 • react
   ## # 사용한 곳?
 ]
 
@@ -925,7 +921,7 @@ lapland
 
 ---
 .left-column[
-  ## # d3(react())
+  ## # d3•react
   ## # 사용한 곳?
 ]
 
@@ -942,7 +938,7 @@ lapland
 
 ---
 .left-column[
-  ## # d3(react())
+  ## # d3 • react
   ## # 사용한 곳?
   ## # 아!
 ]
