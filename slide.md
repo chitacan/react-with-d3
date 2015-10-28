@@ -12,8 +12,8 @@ class: center, middle
 ]
 
 .right-column[
-* Software Engineer @Riiid
 * [https://github.com/chitacan](https://github.com/chitacan)
+* Software Engineer @Riiid (륃)
 * Developing back office & Dashboard
 * [D3.js](http://d3js.org/), [React](http://facebook.github.io/react/), [RxJs](https://github.com/Reactive-Extensions/RxJS/)
 ]
@@ -58,6 +58,7 @@ class: center, middle
 
 * 차트의 갯수가 늘어나고, 지원하는 플랫폼이 늘어나도
 * 빠르게 차트를 추가하고, 관리할 수 있을까?
+* 지금 만든게 재사용 가능한가?
 
 <br/>
 <br/>
@@ -274,11 +275,11 @@ React.createClass({
 ]
 
 .right-column[
-`props`, `state`, `render` 이해하기
+`props`, `state`, `render()` 이해하기
 
 * `props` : 부모 컴포넌트로 부터 전달된 값 (변경불가)
 * `state` : 컴포넌트가 가지는 상태 (`setState` 를 통해 변경가능)
-* `render` : `props` 와 `state` 를 조합해 컴포넌트가 표시할 뷰를 만들어내는 부분
+* `render()` : `props` 와 `state` 를 조합해 컴포넌트가 표시할 뷰를 만들어내는 부분
 
 ```javascript
 function componentName(props) {
@@ -297,7 +298,7 @@ function componentName(props) {
 ]
 
 .right-column[
-전달된 `props` 가 같고, `state` 가 동일하면 `render` 의 리턴값은 항상 동일.
+전달된 `props` 가 같고, `state` 가 동일하면 `render()` 의 리턴값은 항상 동일.
 즉, 컴포넌트가 같은 화면을 그린다.
 
 ```javascript
@@ -311,8 +312,11 @@ ReactComponent(props_1) = dom_1
 어? 그럼 `D3` 랑 합성하는게 가능하지 않을까요?
 
 ```javascript
-d3(ReactComponent(props_1)) = dom_1
-d3(ReactComponent(props_2)) = dom_2
+c = d3•ReactComponent
+c(props_1) = dom_1
+c(props_2) = dom_2
+// later ...
+c(props_1) = dom_1
 ```
 ]
 
@@ -411,6 +415,8 @@ class: center, middle
 * `componentDidMount` : DOM element 와 scale, layout 인스턴스 생성
 * `componentDidUpdate` : size 조절, scale 재설정 & enter, update, exit
 * `shouldComponentUpdate` : `componentDidUpdate` 호출여부 결정
+
+> componentDidUpdate 는 여러번 호출되어도 같은 DOM 을 그릴 수 있게 작성하는 것이 핵심!!
 ]
 
 ---
@@ -431,29 +437,35 @@ componentDidMount() {
   let oH = this.props.height;
   let W  = oW - M - M;
   let H  = oH - M - M;
-  let svg = d3.select(el).append('svg')
+* let svg = d3.select(el).append('svg')
     .attr('width', oW)
     .attr('height', oH);
 
-  this.plot = svg.append('g')
+* let plot = svg.append('g')
     .attr('transform', 'translate(' + M + ', ' + M + ')');
+* this.xScale = d3.scale.linear().range([0, W]);
+* this.yScale = d3.scale.linear().range([H, 0]);
 },
 
 componentDidUpdate() {
   let data = this.props.data;
   let g = this.plot.selectAll('g');
-  g.enter()
+
+* this.xScale.domain([0, MAX_DATA_LEN - 1]);
+* this.yScale.domain([0, MAX_DATA_VAL]);
+
+* g.enter()
     .append('g')
     .append('path')
     .attr('fill', 'none')
     .attr('stroke', (d, i) => COLORS[i])
     .attr('d', (d) => this.line(d));
-  g.select('path')
+* g.select('path')
     .transition()
     .delay((d, i) -> i * ANIM_DELAY)
     .attr('d', (d) => this.line(d))
     .duration(ANIM_DURATION);
-  g.exit().remove();
+* g.exit().remove();
 },
 
 render() {
@@ -513,23 +525,31 @@ componentDidMount() {
 .right-column[
 컴포넌트의 모든 요소를 `D3` 로 렌더링 하는 것을 추천 (특히 legend)
 
-`React` 만으로 legend 를 그리기 위해서는 `state` 를 통해 데이터를 `render` 함수로 전달해야 하는데, `componentDidUpdate` 에서는 불가능하고,
+`React` 로 legend 를 그리려면, `setState` 를 통해 데이터를 `render` 함수로 전달해야 하는데, `componentDidUpdate` 에서는 불가능하고,
 ```javascript
 componentDidUpdate() {
-
-  // enter(), udpate(), exit() ...
 
   let groupByType = d3.nest()
   .key(d => d.type)
   .rollup(values => values.length)
   .entries(this.props.users);
 
+  // enter(), udpate(), exit() ...
+
   // may cause Maximum call stack size exceeded exception !!
   this.setState({legend: groupByType});
 },
-```
 
-> 그래도 이렇게 구현하고 싶다면, 부모 컴포넌트에서 groupByType으로 정리해서 넘겨줘도 됩니다.
+render () {
+  return (
+    <div>
+      <ul>
+      { this.state.legend.map(value => <Legend data={value}/>) }
+      </ul>
+    </div>
+  );
+}
+```
 ]
 
 ---
@@ -539,7 +559,7 @@ componentDidUpdate() {
 ]
 
 .right-column[
-`render` 함수에서 데이터를 정리하면, `render` 함수에서 불필요한 함수 호출이 증가할 수 있습니다.
+`render()` 에서 데이터를 정리하면, 불필요한 함수 호출이 증가할 수 있습니다.
 
 ```javascript
 render () {
@@ -552,11 +572,11 @@ render () {
   return (
     <div>
       <ul>
-      { this.props.groupByType.map(value => <Legend data={value}/>) }
+      { groupByType.map(value => <Legend data={value}/>) }
       </ul>
     </div>
   );
-},
+}
 ```
 ]
 
@@ -844,7 +864,7 @@ class: center, middle
 
 * 저는 `D3` 빠 이기 때문에 👅
 * [codepen](https://codepen.io/chitacan) 에서 작업한 `D3` 코드를 바로 사용하기 위해
-* `props` 로는 최소한의 데이터만 전달하고 컴포넌트 안에서 필요한 데이터를 변환하는 방식을 선호합니다.
+* `props` 로는 최소한의 데이터만 전달하고, 컴포넌트 안에서 필요한 형태로 변환하는 방식을 선호합니다.
 
 <iframe height='312' scrolling='no' src='//codepen.io/chitacan/embed/vNdEpb/?height=312&theme-id=0&default-tab=result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/chitacan/pen/vNdEpb/'>Cluster</a> by Kyung Yeol Kim (<a href='http://codepen.io/chitacan'>@chitacan</a>) on <a href='http://codepen.io'>CodePen</a>.  </iframe>
 
@@ -896,8 +916,8 @@ lapland
 
 * SANTA! 의 back office
 * 문제 분석과 검색, 유저 성적 분석 / 관리
-* rxjs 를 활용해 비동기 작업 처리
-* `D3`, `React`, `redux`, `react-bootstrap`, `coffeescript`, `browserify`, `rxjs`, `lodash`, `amazon s3`
+* `RxJs` 를 활용해 비동기 작업 처리
+* `D3`, `React`, `redux`, `react-bootstrap`, `coffeescript`, `browserify`, `RxJs`, `lodash`, `amazon s3`
 
 ![:scale 35%](img/screenshot_lapland_1.png)
 ![:scale 35%](img/screenshot_lapland_2.png)
