@@ -1,4 +1,5 @@
 React = require 'react'
+d3    = require 'd3'
 
 M =
   top   : 15
