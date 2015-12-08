@@ -40,7 +40,7 @@ class: center, middle
 [`renote`](https://play.google.com/store/apps/details?id=co.riiid.renote) 의 시각화
 
 * 내가 제품을 어떻게 사용하고 있는지 시각적으로 확인할 수 있도록
-* 7일안에 `iOS`, `Android` 동시에 😱
+* `iOS`, `Android` 동시에 😱
 * `D3` 를 활용해 차트를 만들고 `html` 파일과 묶어 `webview` 에서 로드
 * `D3`, `coffeescript`, `webview` 사용
 
@@ -96,7 +96,6 @@ class: center, middle
 [`renote`](https://play.google.com/store/apps/details?id=co.riiid.renote) 의 시각화 V2
 
 * 차트를 `React` 컴포넌트로 변환
-* amazon s3 의 static hosting 을 활용해 바이너리에 포함되지 않아도 동작할 수 있도록
 * 전체 차트를 확인할 수 있는 대시보드
 * `D3`, `React`, `coffeescript`, `browserify`, `webview`, `amazon s3` 사용
 
@@ -262,7 +261,7 @@ React.createClass({
 
 * `props` : 부모 컴포넌트로 부터 전달된 값 (변경불가)
 * `state` : 컴포넌트가 가지는 상태 (`setState` 를 통해 변경가능)
-* `render()` : `props` 와 `state` 를 조합해 컴포넌트가 표시할 뷰를 만들어내는 부분
+* `render()` : `props` 와 `state` 를 조합해 컴포넌트가 표시할 뷰를 리턴
 
 ```javascript
 function componentName(props) {
@@ -291,8 +290,14 @@ ReactComponent(props_2) = dom_2
 ReactComponent(props_1) = dom_1
 ```
 
-수학시간에 잠깐 배웠던 함수합성을 생각하면,
-어? 그럼 `D3` 랑 합성하는게 가능하지 않을까요?
+수학시간에 잠깐 배웠던 함수합성을 생각해보면,
+
+```javascript
+ReactComponent(props) = dom
+d3(data) = dom
+```
+
+어? `D3` 랑 `React` 를 합성하는게 가능하지 않을까요?
 
 ```javascript
 c = d3•ReactComponent
