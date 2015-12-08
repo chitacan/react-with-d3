@@ -4,6 +4,8 @@ d3    = require 'd3'
 X_RANGE= [0..30]
 
 LineChart = React.createClass
+  displayName: 'LineChart'
+
   getInitialState: ->
     data = []
     for i in X_RANGE
@@ -12,6 +14,7 @@ LineChart = React.createClass
 
   componentDidMount: ->
     setTimeout =>
+      return unless @isMounted()
       path = React.findDOMNode(@).querySelector 'path'
       path.style.strokeDashoffset = '0'
     , 500
